@@ -1,16 +1,24 @@
 #include <iostream>
 #include <string>
+#pragma warning(disable : 4996) // Desabilita las warning's de metodos como strcpy_s
 using namespace std;
 
 class Empresa { // Clase Empresa
 private:
     int numeroEmpresa;
+    int numeroEmpleados;
     char* nombre;
+    Cliente cliente; // Una instancia de Cliente
+    Empleado* empleados; // Un arreglo de instancias de Empleado
 public:
     Empresa();
+    Empresa(int, int, char*);
+    ~Empresa();
     void setNumeroEmpresa(int);
-    void setNombre(char const*);
+    void setNumeroEmpleados(int);
+    void setNombre(char const*); 
     int getNumeroEmpresa();
+    int getNumeroEmpleados();
     char* getNombre();
 };
 
@@ -20,8 +28,20 @@ Empresa::Empresa() {
     setNombre(" ");
 }
 
+Empresa::Empresa(int numeroEmpresa, int numeroEmpleados, char* nombreEmpresa) {
+    setNumeroEmpresa(numeroEmpresa);
+    setNumeroEmpleados(numeroEmpleados);
+    setNombre(nombreEmpresa);
+}
+
+Empresa::~Empresa() {}
+
 void Empresa::setNumeroEmpresa(int numeroEmpresa) {
     this->numeroEmpresa = numeroEmpresa;
+}
+
+void Empresa::setNumeroEmpleados(int numeroEmpleados) {
+    this->numeroEmpleados = numeroEmpleados;
 }
 
 void Empresa::setNombre(char const* nombre) {
@@ -30,6 +50,10 @@ void Empresa::setNombre(char const* nombre) {
 
 int Empresa::getNumeroEmpresa() {
     return this->numeroEmpresa;
+}
+
+int Empresa::getNumeroEmpleados() {
+    return numeroEmpleados;
 }
 
 char* Empresa::getNombre() {
@@ -44,12 +68,15 @@ private:
     char* direccion;
 public:
     Cliente();
+    Cliente(int, char*, char*);
+    ~Cliente();
     void setNumeroCliente(int);
     void setNombre(char const*);
     void setDireccion(char const*);
     int getNumeroCliente();
     char* getNombre();
     char* getDireccion();
+    void saludar();
 };
 
 Cliente::Cliente() {
@@ -59,6 +86,14 @@ Cliente::Cliente() {
     setNombre(" ");
     setDireccion(" ");
 }
+
+Cliente::Cliente(int numeroCliente, char* nombre, char* direccion) {
+    setNumeroCliente(numeroCliente);
+    setNombre(nombre);
+    setDireccion(direccion);
+}
+
+Cliente::~Cliente() {}
 
 void Cliente::setNumeroCliente(int numeroCliente) {
     this->numeroCliente = numeroCliente;
@@ -84,6 +119,10 @@ char* Cliente::getDireccion() {
     return this->direccion;
 }
 
+void Cliente::saludar() {
+    cout << "Estoy vivo" << endl;
+}
+
 
 class Empleado { // Clase Empleado
 private:
@@ -92,6 +131,8 @@ private:
     double sueldo;
 public:
     Empleado();
+    Empleado(int, char*, double);
+    ~Empleado();
     void setNumeroNomina(int);
     void setNombre(char const*);
     void setSueldo(double);
@@ -106,6 +147,14 @@ Empleado::Empleado() {
     setNombre(" ");
     setSueldo(0);
 }
+
+Empleado::Empleado(int numeroNomina, char* nombre, double sueldo) {
+    setNumeroNomina(numeroNomina);
+    setNombre(nombre);
+    setSueldo(sueldo);
+}
+
+Empleado::~Empleado() {}
 
 void Empleado::setNumeroNomina(int numeroNomina) {
     this->numeroNomina = numeroNomina;
@@ -132,8 +181,9 @@ double Empleado::getSueldo() {
 }
 
 
-int main()
+int main(void)
 {
     
+
     return 0;
 }
