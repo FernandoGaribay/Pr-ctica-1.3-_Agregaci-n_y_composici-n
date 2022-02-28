@@ -7,6 +7,7 @@ using namespace std;
 //Clase Cliente
 class Cliente { 
 private:
+    // Atributos
 	int numeroCliente;
 	char const* nombre;
 	char const* direccion;
@@ -69,6 +70,7 @@ char const* Cliente::getDireccion() {
 //Clase Empleado
 class Empleado {
 private:
+    // Atributos
     int numeroNomina;
     char const* nombre;
     double sueldo;
@@ -129,10 +131,13 @@ double Empleado::getSueldo() {
 
 //Clase Empresa
 class Empresa {
+private:
+    // Atributos
     int numeroEmpresa;
     int numeroEmpleados;
     char const* nombre;
     Cliente cliente;
+    // Instancias de la Clase "Empleado"
     Empleado* empleados = new Empleado[numeroEmpleados]; // Composicion de los objetos de la Clase "Empleado"
 public:
     Empresa();
@@ -232,10 +237,14 @@ char const* Empresa::getNombre() {
 
 int main()
 {
+    // Instancia de la clase "Cliente"
     Cliente cliente1 = Cliente(1, "Fernando", "Garibay");
-    Empresa empresa = Empresa(1, 2, "Amazon");
 
-    empresa.agregarCliente(cliente1); // Agregacion del objeto de la Clase "Cliente"
+    // Instancia de la Clase "Empresa"
+    Empresa empresa = Empresa(1, 2, "Amazon"); 
+
+    // Agregacion del objeto de la Clase "Cliente"
+    empresa.agregarCliente(cliente1); 
 
     cout << "Cantidad de empleados de la empresa: " << empresa.getNumeroEmpleados() << endl;
     cout << "Suma de los sueldos de todos los empleados: " << empresa.sumaSueldosEmpleados() << endl;
